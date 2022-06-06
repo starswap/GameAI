@@ -102,7 +102,6 @@ class Graph {
       open.insert(s); //index
       while (!open.empty()) { //Gen all shortest paths then we don't run dijkstra too many times.
         top = *open.begin(); //Cheapest open vertex.
-        //cout << top << endl;
         open.erase(*open.begin()); //No longer open.
         closed.insert(top); //Moves to closed.
         
@@ -188,7 +187,6 @@ class Graph {
         while (!(c == source || c==-1)) {
           path.push_back(c);
           c = spt[c];
-          //cout << c;
         }
         if (c == -1) {
           cout << "\tUnreachable - No path exists" << endl;
@@ -205,10 +203,7 @@ class Graph {
       delete costs;
     }
     void addEdge(int i,int j,int cost) {
-     // cout << "adding" << endl;
-      //cout << i<<endl;
-      //cout << j <<endl;
-      AL[i].emplace_back(j,cost);//creates a pair yay!
+      AL[i].emplace_back(j,cost);//creates a pair 
       EL.emplace_back(i,j,cost);
       AM[i][j] = cost;
     }
@@ -329,9 +324,6 @@ ostream& operator << (ostream &o,const Graph &a) {//Make a friend
   }
   o << "CS Academy:" << endl;
   o << "Node Count: " << a.n << endl;
-  //for (i = 0;i<a.n;i++) { //Don't actually need to print these. It still works.
-  //  cout << i << endl;
-  //} 
   for (i = 0;i<a.n;i++){
     for(j = 0;j<a.AL[i].size();j++) {
       o << i << " " << a.AL[i][j].first << " "<< a.AL[i][j].second << endl;  
